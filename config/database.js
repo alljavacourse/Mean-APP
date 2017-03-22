@@ -3,6 +3,6 @@
  */
 
 module.exports={
-    database:'mongodb://localhost:27017/meanauth',
+    database:'mongodb://manoj:root@ds139470.mlab.com:39470/meanauth92',
     secret:'yoursecret'
 };
