@@ -15,22 +15,36 @@ export class AuthService {
   }
 
   //Register User post method
-  registerUser(user) {
-    let headers = new Headers();
-    headers.append('Content.Type', 'application/json');
-    //return this.http.post('http://localhost:3000/users/register', user, {headers: headers})
-    return this.http.post('users/register', user, {headers: headers})
+  // registerUser(user) {
+  //   let headers = new Headers();
+  //   headers.append('Content.Type', 'application/json');
+  //   //return this.http.post('http://localhost:3000/users/register', user, {headers: headers})
+  //   return this.http.post('users/register', user, {headers: headers})
+  //
+  //     .map(res => res.json());
 
+  registerUser(user){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let ep = this.prepEndpoint('users/register');
+    return this.http.post(ep, user,{headers: headers})
       .map(res => res.json());
   }
 
   //Authenticate User Post Method
-  authenticateUser(user) {
-    let headers = new Headers();
-    headers.append('Content.Type', 'application/json');
-    // return this.http.post('http://localhost:3000/users/authenticate', user, {headers: headers})
-    return this.http.post('users/authenticate', user, {headers: headers})
+  // authenticateUser(user) {
+  //   let headers = new Headers();
+  //   headers.append('Content.Type', 'application/json');
+  //   // return this.http.post('http://localhost:3000/users/authenticate', user, {headers: headers})
+  //   return this.http.post('users/authenticate', user, {headers: headers})
+  //
+  //     .map(res => res.json());
 
+  authenticateUser(user){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let ep = this.prepEndpoint('users/authenticate');
+    return this.http.post(ep, user,{headers: headers})
       .map(res => res.json());
 
   }
@@ -41,7 +55,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    //let ep = this.prepEndpoint('users/profile');
+    let ep = this.prepEndpoint('users/profile');
     //return this.http.get(ep, {headers: headers})
     // return this.http.get('http://localhost:3000/users/profile', {headers: headers})
     return this.http.get('users/profile', {headers: headers})
@@ -80,14 +94,14 @@ export class AuthService {
 
   //PrepEnd point
   prepEndpoint(ep) {
-   // if (this.isDev) {
-     // return ep;
-    //} else {
-     // return 'http://localhost:8080/' + ep;
+    if (this.isDev) {
+      return ep;
+    } else {
+      return 'http://localhost:8080/' + ep;
     }
+
+
   }
-
-
-
+}
 
 
