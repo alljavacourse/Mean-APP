@@ -1,0 +1,28 @@
+<soapenv:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://www.w3.org/2005/08/addressing" xmlns:u="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:adl="http://adlibsoftware.com/">
+<soapenv:Header>
+	<a:Action s:mustUnderstand="0" />
+	<a:MessageID>urn:uuid:11a8f5a3-f66c-4ee3-896d-3cc1cda0059b</a:MessageID>
+	<a:ReplyTo>
+		<a:Address>http://www.w3.org/2005/08/addressing/anonymous</a:Address>
+	</a:ReplyTo>
+	<a:To s:mustUnderstand="0">https://adlibsoftware.com:55583/Adlib/Services/JobManagement.svc</a:To>
+	<o:Security s:mustUnderstand="1" xmlns:o="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+		<Assertion ID="_e29fd262-4964-456f-8c53-4c23bc58a667" IssueInstant="2019-09-04T19:34:11.108Z" Version="2.0" xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
+			<Issuer>urn:wrappedjwt</Issuer>
+			<Subject>
+				<SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer"/>
+			</Subject>
+			<AttributeStatement>
+				<Attribute Name="jwt">
+					<AttributeValue>${#TestCase#oAuthToken}</AttributeValue>
+				</Attribute>
+			</AttributeStatement>
+		</Assertion>
+	</o:Security>
+</soapenv:Header>
+   <soapenv:Body>
+      <adl:BeginSubmitJob>
+         <adl:repositoryName>${#Project#RepositoryName}</adl:repositoryName>
+      </adl:BeginSubmitJob>
+   </soapenv:Body>
+</soapenv:Envelope>
